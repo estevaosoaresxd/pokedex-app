@@ -71,7 +71,7 @@ class OnboardStartPage extends StatelessWidget {
                     CircularButtonDefault(
                       title: "Vamos começar!",
                       backgroundColor: Theme.of(context).colorScheme.primary,
-                      onPressed: () => context.goNamed("sign-in"),
+                      onPressed: () => context.goNamed("choose-auth"),
                     )
                   ],
                 ),
