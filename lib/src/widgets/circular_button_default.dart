@@ -5,12 +5,13 @@ class CircularButtonDefault extends StatelessWidget {
   final Color? backgroundColor;
   final String title;
   final TextStyle? style;
-  const CircularButtonDefault(
-      {super.key,
-      this.onPressed,
-      this.backgroundColor,
-      required this.title,
-      this.style});
+  const CircularButtonDefault({
+    super.key,
+    this.onPressed,
+    this.backgroundColor,
+    required this.title,
+    this.style,
+  });
 
   @override
   Widget build(BuildContext context) {

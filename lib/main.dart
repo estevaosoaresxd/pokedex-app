@@ -42,6 +42,11 @@ class MainApp extends StatelessWidget {
             fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
+          labelSmall: const TextStyle(
+            color: Colors.black,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF173EA5),
