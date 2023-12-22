@@ -14,7 +14,7 @@ class SignUpAuthPage extends StatelessWidget {
     final ValueNotifier<int> step = ValueNotifier<int>(0);
 
     void nextStep() {
-      step.value < 2 ? step.value++ : context.goNamed("home");
+      step.value < 2 ? step.value++ : context.goNamed("sign-up-sucess");
     }
 
     String stepTitleTop() {

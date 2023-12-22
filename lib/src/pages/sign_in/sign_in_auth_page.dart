@@ -149,7 +149,7 @@ class SignInAuthPage extends StatelessWidget {
                   title: "Entrar",
                   backgroundColor: Theme.of(context).colorScheme.primary,
                   style: Theme.of(context).textTheme.bodyMedium,
-                  onPressed: () => context.goNamed("sign-in-auth"),
+                  onPressed: () => context.goNamed("sign-in-sucess"),
                 )
               ],
             ),

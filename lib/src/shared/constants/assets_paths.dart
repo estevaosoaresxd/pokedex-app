@@ -12,6 +12,10 @@ abstract class AssetsPaths {
   static const String trainerGirlAndBoy =
       "lib/src/shared/assets/images/choose_auth_1.png";
   static const String dancerGirl = "lib/src/shared/assets/images/sign_up_1.png";
+  static const String devilBoyBlueAndGirlGreen =
+      "lib/src/shared/assets/images/sign_up_2.png";
   static const String trainerBoyRedTshirt =
       "lib/src/shared/assets/images/sign_in_1.png";
+  static const String devilBoyBlackAndGirlBlack =
+      "lib/src/shared/assets/images/sign_in_2.png";
 }

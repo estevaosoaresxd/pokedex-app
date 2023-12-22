@@ -5,14 +5,16 @@ import "package:pokedex_app/src/pages/home/home_page.dart";
 import "package:pokedex_app/src/pages/onboarding/onboarding_page.dart";
 import "package:pokedex_app/src/pages/sign_in/sign_in_auth_page.dart";
 import "package:pokedex_app/src/pages/sign_in/sign_in_page.dart";
+import "package:pokedex_app/src/pages/sign_in/sign_in_sucess_page.dart";
 import "package:pokedex_app/src/pages/sign_up/sign_up_auth_page.dart";
 import "package:pokedex_app/src/pages/sign_up/sign_up_page.dart";
+import "package:pokedex_app/src/pages/sign_up/sign_up_sucess_page.dart";
 import "package:pokedex_app/src/pages/splash/splash_page.dart";
 
 // GoRouter configuration
 class Routes {
   static GoRouter routes = GoRouter(
-    initialLocation: "/",
+    initialLocation: "/forgot-password",
     routes: [
       GoRoute(
         name: "splash",
@@ -40,6 +42,11 @@ class Routes {
         builder: (context, state) => const SignInAuthPage(),
       ),
       GoRoute(
+        name: "sign-in-sucess",
+        path: "/sign-in-sucess",
+        builder: (context, state) => const SignInSucessPage(),
+      ),
+      GoRoute(
         name: "sign-up",
         path: "/sign-up",
         builder: (context, state) => const SignUpPage(),
@@ -48,6 +55,11 @@ class Routes {
         name: "sign-up-auth",
         path: "/sign-up-auth",
         builder: (context, state) => const SignUpAuthPage(),
+      ),
+      GoRoute(
+        name: "sign-up-sucess",
+        path: "/sign-up-sucess",
+        builder: (context, state) => const SignUpSucessPage(),
       ),
       GoRoute(
         name: "forgot-password",
