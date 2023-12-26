@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 import "package:pokedex_app/src/shared/constants/assets_paths.dart";
 import "package:pokedex_app/src/widgets/circular_button_default.dart";
+import "package:pokedex_app/src/shared/extensions/context_extension.dart";
 
 class OnboardStartPage extends StatelessWidget {
   const OnboardStartPage({super.key});
@@ -35,12 +36,12 @@ class OnboardStartPage extends StatelessWidget {
                     ),
                     Text(
                       "Mantenha sua Pokédex atualizada",
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: context.textTheme.titleLarge,
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       "Cadastre-se e mantenha seu perfil, pokémon favoritos, configurações e muito mais, salvos no aplicativo, mesmo sem conexão com a internet.",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: context.textTheme.bodySmall,
                       textAlign: TextAlign.center,
                     ),
                     Row(
@@ -59,7 +60,7 @@ class OnboardStartPage extends StatelessWidget {
                               height: 9,
                               decoration: BoxDecoration(
                                 color: i % 2 == 1
-                                    ? Theme.of(context).colorScheme.primary
+                                    ? context.colorScheme.primary
                                     : Colors.grey[300],
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
@@ -70,7 +71,7 @@ class OnboardStartPage extends StatelessWidget {
                     ),
                     CircularButtonDefault(
                       title: "Vamos começar!",
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      backgroundColor: context.colorScheme.primary,
                       onPressed: () => context.goNamed("choose-auth"),
                     )
                   ],

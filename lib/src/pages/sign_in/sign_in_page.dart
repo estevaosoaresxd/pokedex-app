@@ -3,6 +3,8 @@ import "package:flutter_svg/svg.dart";
 import "package:go_router/go_router.dart";
 import "package:pokedex_app/src/shared/constants/assets_paths.dart";
 import "package:pokedex_app/src/widgets/circular_button_default.dart";
+import "package:pokedex_app/src/shared/extensions/context_extension.dart";
+
 import "package:pokedex_app/src/widgets/outlined_button_default.dart";
 
 class SignInPage extends StatelessWidget {
@@ -61,12 +63,12 @@ class SignInPage extends StatelessWidget {
                     ),
                     Text(
                       "Que bom te ver aqui novamente!",
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: context.textTheme.titleLarge,
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       "Como deseja se conectar?",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: context.textTheme.bodySmall,
                       textAlign: TextAlign.center,
                     ),
                     Column(
@@ -92,9 +94,8 @@ class SignInPage extends StatelessWidget {
                         const SizedBox(height: 12),
                         CircularButtonDefault(
                           title: "Continuar com um e-mail",
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          backgroundColor: context.colorScheme.primary,
+                          style: context.textTheme.bodyMedium,
                           onPressed: () => context.goNamed("sign-in-auth"),
                         )
                       ],

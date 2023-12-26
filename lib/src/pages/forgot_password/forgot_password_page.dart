@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:go_router/go_router.dart";
 import "package:pokedex_app/src/shared/extensions/context_extension.dart";
 import "package:pokedex_app/src/widgets/circular_button_default.dart";
@@ -77,7 +76,7 @@ class ForgotPasswordPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           IconButton(
-                            onPressed: () => context.goNamed("choose-auth"),
+                            onPressed: () => context.goNamed("sign-in-auth"),
                             icon: const Icon(
                               Icons.arrow_back_ios,
                               color: Colors.black,
@@ -134,7 +133,7 @@ class ForgotPasswordPage extends StatelessWidget {
                               TextSpan(
                                 text:
                                     "Digite o código de 6 dígitos enviado para ",
-                                style: Theme.of(context).textTheme.labelMedium,
+                                style: context.textTheme.labelMedium,
                                 children: [
                                   TextSpan(
                                     text: "meuemail@gmail.com",
@@ -162,9 +161,9 @@ class ForgotPasswordPage extends StatelessWidget {
                       ),
                       Text(
                         stepLabelBottom(),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              fontSize: 12,
-                            ),
+                        style: context.textTheme.bodySmall?.copyWith(
+                          fontSize: 12,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                       if (isCode.value) ...[
@@ -185,8 +184,8 @@ class ForgotPasswordPage extends StatelessWidget {
                 ),
                 CircularButtonDefault(
                   title: "Continuar",
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  backgroundColor: context.colorScheme.primary,
+                  style: context.textTheme.bodyMedium,
                   onPressed: () => nextStep(),
                 )
               ],

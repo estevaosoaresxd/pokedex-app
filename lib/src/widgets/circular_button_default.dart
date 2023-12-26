@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:pokedex_app/src/shared/extensions/context_extension.dart";
 
 class CircularButtonDefault extends StatelessWidget {
   final Function()? onPressed;
@@ -23,7 +24,7 @@ class CircularButtonDefault extends StatelessWidget {
       ),
       child: Text(
         title,
-        style: style ?? Theme.of(context).textTheme.titleSmall,
+        style: style ?? context.textTheme.titleSmall,
       ),
     );
   }

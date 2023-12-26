@@ -169,9 +169,9 @@ class SignUpAuthPage extends StatelessWidget {
                       ),
                       Text(
                         stepLabelBottom(),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              fontSize: 12,
-                            ),
+                        style: context.textTheme.bodySmall?.copyWith(
+                          fontSize: 12,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -179,8 +179,8 @@ class SignUpAuthPage extends StatelessWidget {
                 ),
                 CircularButtonDefault(
                   title: stepTitleButton(),
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  backgroundColor: context.colorScheme.primary,
+                  style: context.textTheme.bodyMedium,
                   onPressed: () => nextStep(),
                 )
               ],

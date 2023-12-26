@@ -3,6 +3,8 @@ abstract class AssetsPaths {
   static const String logoSvg = "lib/src/shared/assets/svg/logo.svg";
   static const String logoGoogleSvg =
       "lib/src/shared/assets/svg/logo-google.svg";
+  static const String logoPokemonActived =
+      "lib/src/shared/assets/svg/tab-bar/pokedex.svg";
 
   // IMAGES
   static const String littleBoyAndCientistPng =

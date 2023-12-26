@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:pokedex_app/src/shared/constants/assets_paths.dart";
 import "package:pokedex_app/src/widgets/circular_button_default.dart";
+import "package:pokedex_app/src/shared/extensions/context_extension.dart";
 
 class OnboardAllPokemonsPage extends StatelessWidget {
   final Function() onTapContinue;
@@ -34,12 +35,12 @@ class OnboardAllPokemonsPage extends StatelessWidget {
                     ),
                     Text(
                       "Todos os Pokémons em um só Lugar",
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: context.textTheme.titleLarge,
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       "Acesse uma vasta lista de Pokémon de todas as gerações já feitas pela Nintendo",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: context.textTheme.bodySmall,
                       textAlign: TextAlign.center,
                     ),
                     Row(
@@ -58,7 +59,7 @@ class OnboardAllPokemonsPage extends StatelessWidget {
                               height: 9,
                               decoration: BoxDecoration(
                                 color: i % 2 == 0
-                                    ? Theme.of(context).colorScheme.primary
+                                    ? context.colorScheme.primary
                                     : Colors.grey[300],
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
@@ -69,7 +70,7 @@ class OnboardAllPokemonsPage extends StatelessWidget {
                     ),
                     CircularButtonDefault(
                       title: "Continuar",
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      backgroundColor: context.colorScheme.primary,
                       onPressed: onTapContinue,
                     )
                   ],

@@ -98,7 +98,7 @@ class SignInAuthPage extends StatelessWidget {
                             children: [
                               Text(
                                 "E-mail",
-                                style: Theme.of(context).textTheme.labelSmall,
+                                style: context.textTheme.labelSmall,
                               ),
                               const SizedBox(height: 8),
                               TextFormFieldDefault(
@@ -114,7 +114,7 @@ class SignInAuthPage extends StatelessWidget {
                             children: [
                               Text(
                                 "Senha",
-                                style: Theme.of(context).textTheme.labelSmall,
+                                style: context.textTheme.labelSmall,
                               ),
                               const SizedBox(height: 8),
                               TextFormFieldDefault(
@@ -134,12 +134,10 @@ class SignInAuthPage extends StatelessWidget {
                         onPressed: () => context.goNamed("forgot-password"),
                         child: Text(
                           "Esqueceu sua senha?",
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelSmall
-                              ?.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    color: context.colorScheme.primary,
+                                  ),
                         ),
                       )
                     ],
@@ -147,8 +145,8 @@ class SignInAuthPage extends StatelessWidget {
                 ),
                 CircularButtonDefault(
                   title: "Entrar",
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  backgroundColor: context.colorScheme.primary,
+                  style: context.textTheme.bodyMedium,
                   onPressed: () => context.goNamed("sign-in-sucess"),
                 )
               ],

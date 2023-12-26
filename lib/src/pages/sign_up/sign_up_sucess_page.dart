@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 import "package:pokedex_app/src/shared/constants/assets_paths.dart";
+import "package:pokedex_app/src/shared/extensions/context_extension.dart";
+
 import "package:pokedex_app/src/widgets/circular_button_default.dart";
 
 class SignUpSucessPage extends StatelessWidget {
@@ -26,17 +28,17 @@ class SignUpSucessPage extends StatelessWidget {
                     ),
                     Text(
                       "Sua conta foi criada com Sucesso!",
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: context.textTheme.titleLarge,
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       "Seja bem-vindo, treinador! Estamos animados para acompanhar sua jornada.",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: context.textTheme.bodySmall,
                       textAlign: TextAlign.center,
                     ),
                     CircularButtonDefault(
                       title: "Continuar",
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      backgroundColor: context.colorScheme.primary,
                       onPressed: () => context.goNamed("home"),
                     )
                   ],

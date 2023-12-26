@@ -53,6 +53,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - lib/src/shared/assets/svg/
+    - lib/src/shared/assets/svg/tab-bar/
+    - lib/src/shared/assets/svg/types-pokemon/
     - lib/src/shared/assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

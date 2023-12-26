@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 import "package:pokedex_app/src/shared/constants/assets_paths.dart";
+import "package:pokedex_app/src/shared/extensions/context_extension.dart";
 import "package:pokedex_app/src/widgets/circular_button_default.dart";
 
 class ChooseAuthPage extends StatelessWidget {
@@ -25,7 +26,7 @@ class ChooseAuthPage extends StatelessWidget {
                 ),
                 label: Text(
                   "Pular",
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: context.textTheme.headlineSmall,
                 ),
               ),
             ),
@@ -52,12 +53,12 @@ class ChooseAuthPage extends StatelessWidget {
                         ),
                         Text(
                           "Está pronto para essa aventura?",
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: context.textTheme.titleLarge,
                           textAlign: TextAlign.center,
                         ),
                         Text(
                           "Basta criar uma conta e começar a explorar o mundo dos Pokémon hoje!",
-                          style: Theme.of(context).textTheme.bodySmall,
+                          style: context.textTheme.bodySmall,
                           textAlign: TextAlign.center,
                         ),
                         Column(
@@ -66,8 +67,7 @@ class ChooseAuthPage extends StatelessWidget {
                           children: [
                             CircularButtonDefault(
                               title: "Criar Conta",
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.primary,
+                              backgroundColor: context.colorScheme.primary,
                               onPressed: () => context.goNamed("sign-up"),
                             ),
                             TextButton(
@@ -78,8 +78,7 @@ class ChooseAuthPage extends StatelessWidget {
                                     .textTheme
                                     .titleSmall
                                     ?.copyWith(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
+                                      color: context.colorScheme.primary,
                                     ),
                               ),
                             )

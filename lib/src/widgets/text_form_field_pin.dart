@@ -67,7 +67,7 @@ class TextFormFieldPin extends StatelessWidget {
             ),
           ),
         ),
-        // style: Theme.of(context).textTheme.titleLarge,
+        // style: context.textTheme.titleLarge,
         keyboardType: TextInputType.number,
         textAlign: TextAlign.center,
         inputFormatters: [
