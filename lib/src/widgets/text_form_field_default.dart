@@ -8,11 +8,13 @@ class TextFormFieldDefault extends StatelessWidget {
   final Function(String)? onChanged;
   final Function(String)? onSubmitted;
   final bool isPassword;
+  final bool isSearch;
   const TextFormFieldDefault({
     super.key,
     required this.hintText,
     required this.controller,
     this.isPassword = false,
+    this.isSearch = false,
     this.textInputType,
     this.focusNode,
     this.onChanged,
@@ -51,41 +53,47 @@ class TextFormFieldDefault extends StatelessWidget {
                   },
                 )
               : null,
-          isDense: false,
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
+          prefixIcon: isSearch
+              ? const Icon(
+                  Icons.search,
+                  size: 24,
+                )
+              : null,
+          isDense: isSearch ? true : false,
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
               color: Colors.black,
               width: 2,
             ),
             borderRadius: BorderRadius.all(
-              Radius.circular(6),
+              Radius.circular(isSearch ? 32 : 6),
             ),
           ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
               color: Colors.grey,
               width: 2,
             ),
             borderRadius: BorderRadius.all(
-              Radius.circular(6),
+              Radius.circular(isSearch ? 32 : 6),
             ),
           ),
-          errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
               color: Colors.red,
               width: 2,
             ),
             borderRadius: BorderRadius.all(
-              Radius.circular(6),
+              Radius.circular(isSearch ? 32 : 6),
             ),
           ),
-          focusedErrorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
               color: Colors.red,
               width: 2,
             ),
             borderRadius: BorderRadius.all(
-              Radius.circular(6),
+              Radius.circular(isSearch ? 32 : 6),
             ),
           ),
         ),
