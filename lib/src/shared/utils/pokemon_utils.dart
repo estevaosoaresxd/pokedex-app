@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:pokedex_app/src/shared/constants/assets_paths.dart";
 
 class PokemonUtils {
-  Color? verifyTypePokemonColor({required String type}) {
+  Color verifyTypePokemonColor({required String? type}) {
     switch (type) {
       case "grass":
         return const Color(0xFF63BC5A);
@@ -45,7 +45,7 @@ class PokemonUtils {
     }
   }
 
-  String? verifyTypePokemonType({required String type}) {
+  String verifyTypePokemonAsset({required String? type}) {
     switch (type) {
       case "grass":
         return AssetsPaths.grassType;
@@ -85,6 +85,49 @@ class PokemonUtils {
         return AssetsPaths.steelType;
       default:
         return AssetsPaths.grassType;
+    }
+  }
+
+  String verifyTypePokemonTitle({required String? type}) {
+    switch (type) {
+      case "grass":
+        return "Grama";
+      case "poison":
+        return "Venenoso";
+      case "fire":
+        return "Fogo";
+      case "flying":
+        return "Voador ";
+      case "water":
+        return "Água";
+      case "bug":
+        return "Inseto";
+      case "normal":
+        return "Normal";
+      case "electric":
+        return "Elétrico";
+      case "ground":
+        return "Terrestre";
+      case "fairy":
+        return "Fada";
+      case "fighting":
+        return "Lutador";
+      case "psychic":
+        return "Psíquico";
+      case "rock":
+        return "Pedra";
+      case "ice":
+        return "Gelo";
+      case "dragon":
+        return "Dragão";
+      case "ghost":
+        return "Fantasma";
+      case "dark":
+        return "Noturno";
+      case "steel":
+        return "Metal";
+      default:
+        return "Grama";
     }
   }
 }

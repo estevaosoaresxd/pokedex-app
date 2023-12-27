@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 import "package:intl/intl.dart";
+
 import "package:pokedex_app/src/models/pokemon_model.dart";
-import "package:pokedex_app/src/shared/constants/assets_paths.dart";
 import "package:pokedex_app/src/shared/extensions/context_extension.dart";
+import "package:pokedex_app/src/shared/utils/pokemon_utils.dart";
 
 class PokemonCard extends StatelessWidget {
   final PokemonModel pokemon;
@@ -11,8 +12,18 @@ class PokemonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final utilsPokemon = PokemonUtils();
+
+    final colorTypeStandard = utilsPokemon.verifyTypePokemonColor(
+      type: pokemon.types!.first.type!.name,
+    );
+
+    final iconTypeStandard = utilsPokemon.verifyTypePokemonAsset(
+      type: pokemon.types!.first.type!.name,
+    );
+
     return Card(
-      color: Colors.green[50],
+      color: colorTypeStandard.withOpacity(0.1),
       child: SizedBox(
         height: 105,
         child: Row(
@@ -45,69 +56,9 @@ class PokemonCard extends StatelessWidget {
                     const SizedBox(height: 5),
                     Row(
                       children: [
-                        Container(
-                          height: 28,
-                          padding: const EdgeInsets.symmetric(horizontal: 6),
-                          decoration: BoxDecoration(
-                            color: Colors.green[400],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(40),
-                                ),
-                                child: SvgPicture.asset(
-                                  AssetsPaths.grassType,
-                                  width: 12,
-                                  color: Colors.green[400],
-                                ),
-                              ),
-                              const SizedBox(width: 5),
-                              Text(
-                                "Grama",
-                                style: context.textTheme.labelSmall
-                                    ?.copyWith(fontSize: 11),
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                        Container(
-                          height: 28,
-                          padding: const EdgeInsets.symmetric(horizontal: 6),
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurpleAccent[100],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(40),
-                                ),
-                                child: SvgPicture.asset(
-                                  AssetsPaths.poisonType,
-                                  width: 12,
-                                  color: Colors.deepPurpleAccent[100],
-                                ),
-                              ),
-                              const SizedBox(width: 5),
-                              Text(
-                                "Venenoso",
-                                style: context.textTheme.labelSmall
-                                    ?.copyWith(fontSize: 11),
-                              )
-                            ],
-                          ),
-                        ),
+                        ...pokemon.types!.map(
+                          (type) => PokemonType(type: type),
+                        )
                       ],
                     )
                   ],
@@ -126,23 +77,29 @@ class PokemonCard extends StatelessWidget {
                   bottom: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.green[300],
+                  color: colorTypeStandard,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
                     SvgPicture.asset(
-                      AssetsPaths.grassType,
+                      iconTypeStandard,
                       colorFilter: ColorFilter.mode(
                         Colors.white.withOpacity(0.5),
                         BlendMode.srcIn,
                       ),
                     ),
-                    Image.network(
-                      "https://img.pokemondb.net/sprites/black-white/normal/bulbasaur.png",
-                      fit: BoxFit.fill,
-                    ),
+                    if (pokemon.sprites?.frontDefault != null)
+                      Image.network(
+                        pokemon.sprites!.frontDefault!,
+                        fit: BoxFit.fill,
+                      )
+                    else
+                      const Icon(
+                        Icons.image_not_supported_outlined,
+                        color: Colors.white,
+                      ),
                     Positioned(
                       right: 0,
                       top: 0,
@@ -172,6 +129,64 @@ class PokemonCard extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class PokemonType extends StatelessWidget {
+  final Type type;
+
+  const PokemonType({
+    Key? key,
+    required this.type,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final utilsPokemon = PokemonUtils();
+
+    final colorType = utilsPokemon.verifyTypePokemonColor(
+      type: type.type?.name,
+    );
+
+    final iconType = utilsPokemon.verifyTypePokemonAsset(
+      type: type.type?.name,
+    );
+
+    final titleType = utilsPokemon.verifyTypePokemonTitle(
+      type: type.type?.name,
+    );
+
+    return Container(
+      height: 28,
+      padding: const EdgeInsets.symmetric(horizontal: 6),
+      margin: const EdgeInsets.only(right: 5),
+      decoration: BoxDecoration(
+        color: colorType,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(4),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: SvgPicture.asset(
+              iconType,
+              width: 12,
+              colorFilter: ColorFilter.mode(colorType, BlendMode.srcIn),
+            ),
+          ),
+          const SizedBox(width: 5),
+          Text(
+            titleType,
+            style: context.textTheme.labelSmall?.copyWith(fontSize: 11),
+          )
+        ],
       ),
     );
   }
