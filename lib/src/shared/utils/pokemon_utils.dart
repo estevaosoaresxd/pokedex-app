@@ -2,6 +2,27 @@ import "package:flutter/material.dart";
 import "package:pokedex_app/src/shared/constants/assets_paths.dart";
 
 class PokemonUtils {
+  List<String> types = [
+    "water",
+    "dragon",
+    "electric",
+    "fairy",
+    "ghost",
+    "fire",
+    "ice",
+    "grass",
+    "bug",
+    "fighting",
+    "normal",
+    "dark",
+    "steel",
+    "rock",
+    "psychic",
+    "ground",
+    "poison",
+    "flying",
+  ];
+
   Color verifyTypePokemonColor({required String? type}) {
     switch (type) {
       case "grass":

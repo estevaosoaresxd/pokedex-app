@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 import "package:pokedex_app/src/shared/constants/assets_paths.dart";
 import "package:pokedex_app/src/shared/extensions/context_extension.dart";
+import "package:pokedex_app/src/widgets/bottom_sheet_type.dart";
 import "package:pokedex_app/src/widgets/text_form_field_default.dart";
 
 class PokedexPage extends StatelessWidget {
@@ -36,7 +37,19 @@ class PokedexPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () => showModalBottomSheet(
+                      showDragHandle: true,
+                      enableDrag: true,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.white,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20),
+                        ),
+                      ),
+                      context: context,
+                      builder: (context) => const BottomSheetType(),
+                    ),
                     icon: const Icon(
                       Icons.keyboard_arrow_down,
                       color: Colors.white,
