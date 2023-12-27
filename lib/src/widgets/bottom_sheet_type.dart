@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:go_router/go_router.dart";
 import "package:pokedex_app/src/shared/extensions/context_extension.dart";
 import "package:pokedex_app/src/shared/utils/pokemon_utils.dart";
 
@@ -33,7 +34,9 @@ class BottomSheetType extends StatelessWidget {
               itemBuilder: (context, i) {
                 if (i == 0) {
                   return ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => context.pop({
+                      "type": "all",
+                    }),
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size.fromHeight(42),
                       backgroundColor: Colors.black87,
@@ -51,7 +54,9 @@ class BottomSheetType extends StatelessWidget {
                 final type = utils.types[i - 1];
 
                 return ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => context.pop({
+                    "type": type,
+                  }),
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size.fromHeight(42),
                     backgroundColor: utils.verifyTypePokemonColor(type: type),
