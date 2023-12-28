@@ -5,6 +5,7 @@ import "package:intl/intl.dart";
 import "package:pokedex_app/src/models/pokemon_model.dart";
 import "package:pokedex_app/src/shared/extensions/context_extension.dart";
 import "package:pokedex_app/src/shared/utils/pokemon_utils.dart";
+import "package:pokedex_app/src/widgets/pokemon_type.dart";
 
 class PokemonCard extends StatelessWidget {
   final PokemonModel pokemon;
@@ -129,64 +130,6 @@ class PokemonCard extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class PokemonType extends StatelessWidget {
-  final Type type;
-
-  const PokemonType({
-    Key? key,
-    required this.type,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final utilsPokemon = PokemonUtils();
-
-    final colorType = utilsPokemon.verifyTypePokemonColor(
-      type: type.type?.name,
-    );
-
-    final iconType = utilsPokemon.verifyTypePokemonAsset(
-      type: type.type?.name,
-    );
-
-    final titleType = utilsPokemon.verifyTypePokemonTitle(
-      type: type.type?.name,
-    );
-
-    return Container(
-      height: 28,
-      padding: const EdgeInsets.symmetric(horizontal: 6),
-      margin: const EdgeInsets.only(right: 5),
-      decoration: BoxDecoration(
-        color: colorType,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: SvgPicture.asset(
-              iconType,
-              width: 12,
-              colorFilter: ColorFilter.mode(colorType, BlendMode.srcIn),
-            ),
-          ),
-          const SizedBox(width: 5),
-          Text(
-            titleType,
-            style: context.textTheme.labelSmall?.copyWith(fontSize: 11),
-          )
-        ],
       ),
     );
   }

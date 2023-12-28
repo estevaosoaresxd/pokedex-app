@@ -1,8 +1,10 @@
 import "package:go_router/go_router.dart";
+import "package:pokedex_app/src/models/pokemon_model.dart";
 import "package:pokedex_app/src/pages/choose_auth/choose_auth_page.dart";
 import "package:pokedex_app/src/pages/forgot_password/forgot_password_page.dart";
 import "package:pokedex_app/src/pages/home/home_page.dart";
 import "package:pokedex_app/src/pages/onboarding/onboarding_page.dart";
+import "package:pokedex_app/src/pages/pokemon_detail/pokemon_detail_page.dart";
 import "package:pokedex_app/src/pages/sign_in/sign_in_auth_page.dart";
 import "package:pokedex_app/src/pages/sign_in/sign_in_page.dart";
 import "package:pokedex_app/src/pages/sign_in/sign_in_sucess_page.dart";
@@ -70,6 +72,13 @@ class Routes {
         name: "home",
         path: "/home",
         builder: (context, state) => const HomePage(),
+      ),
+      GoRoute(
+        name: "pokemon-detail",
+        path: "/pokemon-detail",
+        builder: (context, state) => PokemonDetailPage(
+          pokemon: state.extra as PokemonModel,
+        ),
       ),
     ],
   );
