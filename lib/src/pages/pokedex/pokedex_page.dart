@@ -226,8 +226,6 @@ class PokedexPage extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: Container(
-                            width: double.infinity,
-                            height: double.infinity,
                             padding: const EdgeInsets.only(
                               left: 10,
                               right: 10,
@@ -248,9 +246,13 @@ class PokedexPage extends StatelessWidget {
                                     BlendMode.srcIn,
                                   ),
                                 ),
-                                Image.network(
-                                  "https://img.pokemondb.net/sprites/black-white/normal/bulbasaur.png",
-                                  fit: BoxFit.fill,
+                                SizedBox(
+                                  width: context.screenSize.height * 0.15,
+                                  height: context.screenSize.height * 0.15,
+                                  child: Image.network(
+                                    "https://img.pokemondb.net/sprites/black-white/normal/bulbasaur.png",
+                                    fit: BoxFit.fitWidth,
+                                  ),
                                 ),
                                 Positioned(
                                   right: 0,

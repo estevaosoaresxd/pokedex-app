@@ -94,7 +94,7 @@ class PokemonCard extends StatelessWidget {
                     if (pokemon.sprites?.frontDefault != null)
                       Image.network(
                         pokemon.sprites!.frontDefault!,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.fitHeight,
                       )
                     else
                       const Icon(
