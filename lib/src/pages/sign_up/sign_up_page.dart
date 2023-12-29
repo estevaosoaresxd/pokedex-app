@@ -95,7 +95,7 @@ class SignUpPage extends StatelessWidget {
                           title: "Continuar com um e-mail",
                           backgroundColor: context.colorScheme.primary,
                           style: context.textTheme.bodyMedium,
-                          onPressed: () => context.goNamed("sign-up-auth"),
+                          onPressed: () => context.pushNamed("sign-up-auth"),
                         )
                       ],
                     )

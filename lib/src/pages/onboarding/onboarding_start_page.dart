@@ -50,7 +50,7 @@ class OnboardStartPage extends StatelessWidget {
                         ...List.generate(
                           2,
                           (i) => Hero(
-                            tag: i % 2 == 1 ? "default" : "other",
+                            tag: i % 2 == 1 ? "default$i" : "other$i",
                             child: AnimatedContainer(
                               duration: const Duration(
                                 milliseconds: 300,
