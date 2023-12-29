@@ -68,10 +68,10 @@ class ChooseAuthPage extends StatelessWidget {
                             CircularButtonDefault(
                               title: "Criar Conta",
                               backgroundColor: context.colorScheme.primary,
-                              onPressed: () => context.goNamed("sign-up"),
+                              onPressed: () => context.pushNamed("sign-up"),
                             ),
                             TextButton(
-                              onPressed: () => context.goNamed("sign-in"),
+                              onPressed: () => context.pushNamed("sign-in"),
                               child: Text(
                                 "Já tenho uma conta",
                                 style: Theme.of(context)

@@ -76,7 +76,7 @@ class ForgotPasswordPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           IconButton(
-                            onPressed: () => context.goNamed("sign-in-auth"),
+                            onPressed: () => context.pop(),
                             icon: const Icon(
                               Icons.arrow_back_ios,
                               color: Colors.black,

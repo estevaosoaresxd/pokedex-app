@@ -35,7 +35,7 @@ class SignInAuthPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           IconButton(
-                            onPressed: () => context.goNamed("choose-auth"),
+                            onPressed: () => context.pop(),
                             icon: const Icon(
                               Icons.arrow_back_ios,
                               color: Colors.black,
@@ -51,9 +51,9 @@ class SignInAuthPage extends StatelessWidget {
                                 ),
                             textAlign: TextAlign.center,
                           ),
-                          IconButton(
-                            onPressed: () => {},
-                            icon: const Icon(
+                          const IconButton(
+                            onPressed: null,
+                            icon: Icon(
                               Icons.arrow_back_ios,
                               color: Colors.white,
                             ),
@@ -131,7 +131,7 @@ class SignInAuthPage extends StatelessWidget {
                         height: size.height * 0.02,
                       ),
                       TextButton(
-                        onPressed: () => context.goNamed("forgot-password"),
+                        onPressed: () => context.pushNamed("forgot-password"),
                         child: Text(
                           "Esqueceu sua senha?",
                           style:

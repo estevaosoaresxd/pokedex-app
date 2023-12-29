@@ -31,7 +31,7 @@ class SignUpPage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         IconButton(
-                          onPressed: () => context.goNamed("choose-auth"),
+                          onPressed: () => context.pop(),
                           icon: const Icon(
                             Icons.arrow_back_ios,
                             color: Colors.black,
@@ -47,9 +47,9 @@ class SignUpPage extends StatelessWidget {
                               ),
                           textAlign: TextAlign.center,
                         ),
-                        IconButton(
-                          onPressed: () => {},
-                          icon: const Icon(
+                        const IconButton(
+                          onPressed: null,
+                          icon: Icon(
                             Icons.arrow_back_ios,
                             color: Colors.white,
                           ),

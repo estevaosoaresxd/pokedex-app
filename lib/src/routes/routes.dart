@@ -16,7 +16,7 @@ import "package:pokedex_app/src/pages/splash/splash_page.dart";
 // GoRouter configuration
 class Routes {
   static GoRouter routes = GoRouter(
-    initialLocation: "/home",
+    initialLocation: "/",
     routes: [
       GoRoute(
         name: "splash",

@@ -32,7 +32,7 @@ class SignInPage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         IconButton(
-                          onPressed: () => context.goNamed("choose-auth"),
+                          onPressed: () => context.pop(),
                           icon: const Icon(
                             Icons.arrow_back_ios,
                             color: Colors.black,
@@ -48,9 +48,9 @@ class SignInPage extends StatelessWidget {
                               ),
                           textAlign: TextAlign.center,
                         ),
-                        IconButton(
-                          onPressed: () => {},
-                          icon: const Icon(
+                        const IconButton(
+                          onPressed: null,
+                          icon: Icon(
                             Icons.arrow_back_ios,
                             color: Colors.white,
                           ),
@@ -96,7 +96,7 @@ class SignInPage extends StatelessWidget {
                           title: "Continuar com um e-mail",
                           backgroundColor: context.colorScheme.primary,
                           style: context.textTheme.bodyMedium,
-                          onPressed: () => context.goNamed("sign-in-auth"),
+                          onPressed: () => context.pushNamed("sign-in-auth"),
                         )
                       ],
                     )
