@@ -6,13 +6,14 @@ class CircularButtonDefault extends StatelessWidget {
   final Color? backgroundColor;
   final String title;
   final TextStyle? style;
-  const CircularButtonDefault({
-    super.key,
-    this.onPressed,
-    this.backgroundColor,
-    required this.title,
-    this.style,
-  });
+  final bool isLoading;
+  const CircularButtonDefault(
+      {super.key,
+      this.onPressed,
+      this.backgroundColor,
+      required this.title,
+      this.style,
+      this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,14 @@ class CircularButtonDefault extends StatelessWidget {
         backgroundColor: backgroundColor,
         fixedSize: const Size.fromHeight(58),
       ),
-      child: Text(
-        title,
-        style: style ?? context.textTheme.titleSmall,
-      ),
+      child: isLoading
+          ? const CircularProgressIndicator(
+              color: Colors.white,
+            )
+          : Text(
+              title,
+              style: style ?? context.textTheme.titleSmall,
+            ),
     );
   }
 }

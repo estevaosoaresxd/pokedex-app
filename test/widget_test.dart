@@ -27,4 +27,29 @@ void main() {
     expect(find.text("0"), findsNothing);
     expect(find.text("1"), findsOneWidget);
   });
+
+  List<int> calcFibonnaci({int total = 5}) {
+    final List<int> fibonnaciValues = [];
+
+    int n1 = 0, n2 = 1, nextNum;
+
+    for (int i = 1; i <= total; ++i) {
+      nextNum = n1 + n2;
+      n1 = n2;
+      n2 = nextNum;
+
+      fibonnaciValues.add(n1);
+    }
+
+    return fibonnaciValues;
+  }
+
+  test(
+      "Fibonnaci Validator - unit test correspondente que garanta que a 2ª posição seja igual à 3ª posição e que a 4ª posição seja igual a 3ª",
+      () {
+    final values = calcFibonnaci();
+
+    expect(values[1], equals(values[2]));
+    expect(values[3], equals(values[2]));
+  });
 }

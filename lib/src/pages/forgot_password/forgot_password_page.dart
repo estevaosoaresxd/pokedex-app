@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
+import "package:pokedex_app/src/pages/forgot_password/bloc/forgot_password_bloc.dart";
 import "package:pokedex_app/src/shared/extensions/context_extension.dart";
 import "package:pokedex_app/src/widgets/circular_button_default.dart";
 import "package:pokedex_app/src/widgets/text_form_field_default.dart";
@@ -11,7 +12,7 @@ class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = context.screenSize;
-
+    final bloc = ForgotPasswordBloc();
     final ValueNotifier<bool> isCode = ValueNotifier<bool>(false);
 
     void nextStep() {

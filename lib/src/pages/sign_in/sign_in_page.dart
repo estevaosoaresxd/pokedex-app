@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_svg/svg.dart";
 import "package:go_router/go_router.dart";
+import "package:pokedex_app/src/pages/sign_in/bloc/sign_in_auth_bloc.dart";
 import "package:pokedex_app/src/shared/constants/assets_paths.dart";
 import "package:pokedex_app/src/widgets/circular_button_default.dart";
 import "package:pokedex_app/src/shared/extensions/context_extension.dart";
@@ -12,6 +14,8 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = SignInAuthBloc();
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -71,34 +75,61 @@ class SignInPage extends StatelessWidget {
                       style: context.textTheme.bodySmall,
                       textAlign: TextAlign.center,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        OutlinedButtonDefault(
-                          onPressed: () {},
-                          icon: Icons.apple,
-                          title: "Continuar com a Apple",
-                        ),
-                        const SizedBox(height: 12),
-                        OutlinedButtonDefault(
-                          onPressed: () {},
-                          icon: Icons.apple,
-                          iconOutside: SvgPicture.asset(
-                            AssetsPaths.logoGoogleSvg,
-                            width: 30,
-                            height: 30,
-                          ),
-                          title: "Continuar com o Google",
-                        ),
-                        const SizedBox(height: 12),
-                        CircularButtonDefault(
-                          title: "Continuar com um e-mail",
-                          backgroundColor: context.colorScheme.primary,
-                          style: context.textTheme.bodyMedium,
-                          onPressed: () => context.pushNamed("sign-in-auth"),
-                        )
-                      ],
+                    BlocConsumer<SignInAuthBloc, SignInAuthState>(
+                      bloc: bloc,
+                      listener: (context, state) {
+                        if (state is SignInAuthSucessState) {
+                          context.goNamed("sign-auth-sucess");
+                        } else if (state is SignInAuthFailureState) {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                content: Text(state.errorMessage),
+                              );
+                            },
+                          );
+                        }
+                      },
+                      builder: (_, state) {
+                        if (state is SignInAuthLoadingState &&
+                            state.isLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            OutlinedButtonDefault(
+                              onPressed: () => bloc.add(SignInWithApple()),
+                              icon: Icons.apple,
+                              title: "Continuar com a Apple",
+                            ),
+                            const SizedBox(height: 12),
+                            OutlinedButtonDefault(
+                              onPressed: () => bloc.add(SignInWithGoogle()),
+                              icon: Icons.apple,
+                              iconOutside: SvgPicture.asset(
+                                AssetsPaths.logoGoogleSvg,
+                                width: 30,
+                                height: 30,
+                              ),
+                              title: "Continuar com o Google",
+                            ),
+                            const SizedBox(height: 12),
+                            CircularButtonDefault(
+                              title: "Continuar com um e-mail",
+                              backgroundColor: context.colorScheme.primary,
+                              style: context.textTheme.bodyMedium,
+                              onPressed: () =>
+                                  context.pushNamed("sign-in-auth"),
+                            )
+                          ],
+                        );
+                      },
                     )
                   ],
                 ),
