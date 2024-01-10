@@ -7,12 +7,12 @@ sealed class ForgotPasswordState extends Equatable {
   List<Object> get props => [];
 }
 
-final class ForgotPasswordInitial extends ForgotPasswordState {}
+final class ForgotPasswordInitialState extends ForgotPasswordState {}
 
-class ForgotPasswordLoadingState extends ForgotPasswordState {
-  final bool isLoading;
+class ForgotPasswordCodeState extends ForgotPasswordState {
+  final bool isCode;
 
-  const ForgotPasswordLoadingState({required this.isLoading});
+  const ForgotPasswordCodeState({required this.isCode});
 }
 
 class ForgotPasswordSucessState extends ForgotPasswordState {

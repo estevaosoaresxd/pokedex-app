@@ -9,25 +9,27 @@ class ForgotPasswordBloc
     extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
   final FirebaseAuthService _authService = FirebaseAuthService();
 
-  ForgotPasswordBloc() : super(ForgotPasswordInitial()) {
+  ForgotPasswordBloc() : super(ForgotPasswordInitialState()) {
     on<ForgotPasswordEvent>((event, emit) {});
 
     on<ForgotPasswordSubmit>(sendForgotPassword);
+
+    on<ForgotPasswordVerifyCode>(verifyCode);
   }
 
   Future<void> sendForgotPassword(event, emit) async {
-    emit(const ForgotPasswordLoadingState(isLoading: true));
-
     try {
       await _authService.forgotPasswordEmail(
         email: event.email,
       );
-
-      const ForgotPasswordSucessState(code: "123456");
     } catch (e) {
       emit(ForgotPasswordFailureState(errorMessage: e.toString()));
     } finally {
-      emit(const ForgotPasswordLoadingState(isLoading: false));
+      emit(const ForgotPasswordCodeState(isCode: true));
     }
+  }
+
+  Future<void> verifyCode(event, emit) async {
+    emit(ForgotPasswordSucessState(code: event.code));
   }
 }

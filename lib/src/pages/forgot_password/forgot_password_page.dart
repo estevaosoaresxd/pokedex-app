@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:go_router/go_router.dart";
 import "package:pokedex_app/src/pages/forgot_password/bloc/forgot_password_bloc.dart";
 import "package:pokedex_app/src/shared/extensions/context_extension.dart";
@@ -12,47 +13,8 @@ class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = context.screenSize;
+    final emailController = TextEditingController();
     final bloc = ForgotPasswordBloc();
-    final ValueNotifier<bool> isCode = ValueNotifier<bool>(false);
-
-    void nextStep() {
-      if (!isCode.value) {
-        isCode.value = true;
-      } else {
-        context.goNamed("sign-in-sucess");
-      }
-    }
-
-    String stepTitleBottom() {
-      return isCode.value ? "Insira o código" : "Qual é o seu e-mail?";
-    }
-
-    String stepLabelBottom() {
-      return isCode.value
-          ? "Não recebeu o código? "
-          : "Vamos enviar um código de verificação para o seu e-mail.";
-    }
-
-    Widget stepFormField() {
-      return isCode.value
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ...List.generate(
-                  6,
-                  (index) => TextFormFieldPin(
-                    autoFocus: index == 0,
-                    controller: TextEditingController(),
-                  ),
-                )
-              ],
-            )
-          : TextFormFieldDefault(
-              hintText: "E-mail",
-              controller: TextEditingController(),
-              textInputType: TextInputType.emailAddress,
-            );
-    }
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -62,9 +24,23 @@ class ForgotPasswordPage extends StatelessWidget {
             vertical: 30,
             horizontal: 16,
           ),
-          child: ValueListenableBuilder(
-            valueListenable: isCode,
-            builder: (context, _, __) => Column(
+          child: BlocConsumer(
+            bloc: bloc,
+            listener: (context, state) {
+              if (state is ForgotPasswordSucessState) {
+                context.goNamed("sign-in-sucess");
+              } else if (state is ForgotPasswordFailureState) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(state.errorMessage),
+                    );
+                  },
+                );
+              }
+            },
+            builder: (_, state) => Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
@@ -107,7 +83,7 @@ class ForgotPasswordPage extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          if (!isCode.value) ...[
+                          if (state is ForgotPasswordInitialState) ...[
                             Text(
                               "Vamos recuperar!",
                               style: Theme.of(context)
@@ -121,14 +97,16 @@ class ForgotPasswordPage extends StatelessWidget {
                             ),
                           ],
                           Text(
-                            stepTitleBottom(),
+                            state is ForgotPasswordCodeState
+                                ? "Insira o código"
+                                : "Qual é o seu e-mail?",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge
                                 ?.copyWith(fontWeight: FontWeight.w600),
                             textAlign: TextAlign.center,
                           ),
-                          if (isCode.value) ...[
+                          if (state is ForgotPasswordCodeState) ...[
                             const SizedBox(height: 4),
                             Text.rich(
                               TextSpan(
@@ -156,18 +134,37 @@ class ForgotPasswordPage extends StatelessWidget {
                       SizedBox(
                         height: size.height * 0.03,
                       ),
-                      stepFormField(),
+                      state is ForgotPasswordCodeState
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ...List.generate(
+                                  6,
+                                  (index) => TextFormFieldPin(
+                                    autoFocus: index == 0,
+                                    controller: TextEditingController(),
+                                  ),
+                                )
+                              ],
+                            )
+                          : TextFormFieldDefault(
+                              hintText: "E-mail",
+                              controller: emailController,
+                              textInputType: TextInputType.emailAddress,
+                            ),
                       SizedBox(
                         height: size.height * 0.01,
                       ),
                       Text(
-                        stepLabelBottom(),
+                        state is ForgotPasswordCodeState
+                            ? "Não recebeu o código? "
+                            : "Vamos enviar um código de verificação para o seu e-mail.",
                         style: context.textTheme.bodySmall?.copyWith(
                           fontSize: 12,
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      if (isCode.value) ...[
+                      if (state is ForgotPasswordCodeState) ...[
                         const SizedBox(
                           height: 4,
                         ),
@@ -187,7 +184,10 @@ class ForgotPasswordPage extends StatelessWidget {
                   title: "Continuar",
                   backgroundColor: context.colorScheme.primary,
                   style: context.textTheme.bodyMedium,
-                  onPressed: () => nextStep(),
+                  onPressed: () => state is ForgotPasswordCodeState &&
+                          state.isCode
+                      ? bloc.add(const ForgotPasswordVerifyCode("123456"))
+                      : bloc.add(ForgotPasswordSubmit(emailController.text)),
                 )
               ],
             ),

@@ -32,7 +32,7 @@ class SignInAuthPage extends StatelessWidget {
               bloc: bloc,
               listener: (context, state) {
                 if (state is SignInAuthSucessState) {
-                  context.goNamed("sign-auth-sucess");
+                  context.goNamed("sign-in-sucess");
                 } else if (state is SignInAuthFailureState) {
                   showDialog(
                     context: context,
