@@ -169,7 +169,9 @@ class PokedexPage extends StatelessWidget {
                                             child: SvgPicture.asset(
                                               AssetsPaths.grassType,
                                               width: 12,
-                                              color: Colors.green[400],
+                                              colorFilter: ColorFilter.mode(
+                                                  Colors.green[400]!,
+                                                  BlendMode.srcIn),
                                             ),
                                           ),
                                           const SizedBox(width: 5),
@@ -204,8 +206,10 @@ class PokedexPage extends StatelessWidget {
                                             child: SvgPicture.asset(
                                               AssetsPaths.poisonType,
                                               width: 12,
-                                              color:
-                                                  Colors.deepPurpleAccent[100],
+                                              colorFilter: ColorFilter.mode(
+                                                Colors.deepPurpleAccent[100]!,
+                                                BlendMode.srcIn,
+                                              ),
                                             ),
                                           ),
                                           const SizedBox(width: 5),

@@ -13,6 +13,9 @@ class SignInAuthLoadingState extends SignInAuthState {
   final bool isLoading;
 
   const SignInAuthLoadingState({required this.isLoading});
+
+  @override
+  List<Object> get props => [isLoading];
 }
 
 class SignInAuthSucessState extends SignInAuthState {

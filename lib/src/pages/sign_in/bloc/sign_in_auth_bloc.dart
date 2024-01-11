@@ -12,8 +12,6 @@ class SignInAuthBloc extends Bloc<SignInAuthEvent, SignInAuthState> {
   SignInAuthBloc() : super(SignInAuthInitialState()) {
     on<SignInAuthEvent>((event, emit) {});
 
-    on<SignUpUserEmail>(signUpUserEmail);
-
     on<SignInUserEmail>(signInUserEmail);
 
     on<SignInWithGoogle>(signInWithGoogle);
@@ -21,28 +19,6 @@ class SignInAuthBloc extends Bloc<SignInAuthEvent, SignInAuthState> {
     on<SignInWithApple>(signInWithApple);
 
     on<SignOut>(signOut);
-  }
-
-  Future<void> signUpUserEmail(event, emit) async {
-    emit(const SignInAuthLoadingState(isLoading: true));
-
-    try {
-      final UserCredential? user =
-          await _authService.signUpWithEmailAndPassword(
-        email: event.email,
-        password: event.password,
-      );
-
-      if (user != null) {
-        emit(SignInAuthSucessState(user: user));
-      } else {
-        emit(const SignInAuthFailureState(errorMessage: "Create user failed"));
-      }
-    } catch (e) {
-      emit(SignInAuthFailureState(errorMessage: e.toString()));
-    } finally {
-      emit(const SignInAuthLoadingState(isLoading: false));
-    }
   }
 
   Future<void> signInUserEmail(event, emit) async {
